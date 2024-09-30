@@ -1,0 +1,220 @@
+@use "./colors.scss";
+@use "./fonts.scss";
+
+$input-height: 30px;
+$input-border-radius: 4px;
+$input-border-size: 1px solid;
+$input-border-color: map-get(
+    $map: colors.$gray-scale,
+    $key: 300,
+);
+$input-text-color: map-get(
+    $map: colors.$gray-scale,
+    $key: 700,
+);
+$input-font-size: fonts.$text-xs;
+$input-placeholder-color: map-get(
+    $map: colors.$gray-scale,
+    $key: 500,
+);
+$input-background-color: #ffffff;
+
+$icon-size: 11px;
+$icon-valid-color: map-get(
+    $map: colors.$theme-primary,
+    $key: 500,
+);
+$icon-invalid-color: map-get(
+    $map: colors.$theme-error,
+    $key: 500,
+);
+
+$input-disabled-background-color: map-get(
+    $map: colors.$gray-scale,
+    $key: 200,
+);
+$input-disabled-text-color: map-get(
+    $map: colors.$gray-scale,
+    $key: 500,
+);
+
+$input-focus-valid-border: $input-border-size
+    map-get(
+        $map: colors.$theme-primary,
+        $key: 500,
+    );
+$input-focus-valid-box-shadow: 0px 0px 0px 4px
+    map-get(
+        $map: colors.$theme-primary,
+        $key: 200,
+    );
+
+$input-focus-invalid-border: $input-border-size
+    map-get(
+        $map: colors.$theme-error,
+        $key: 500,
+    );
+$input-focus-invalid-box-shadow: 0px 0px 0px 4px
+    map-get(
+        $map: colors.$theme-error,
+        $key: 200,
+    );
+
+.app-input-div {
+    background-color: $input-background-color;
+    border: $input-border-size;
+    border-color: $input-border-color;
+    border-radius: $input-border-radius;
+    transition: border-color 0.05s ease-in-out, box-shadow 0.05s ease-in-out;
+
+    /*Align items inside the div*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: content;
+    width: 100%;
+}
+
+.app-input-div:not(.disabled):has(.app-input:not([disabled]):not([readonly]):focus) {
+    @extend .app-input-valid;
+}
+
+.app-input-div.disabled,
+.app-input-div:has(.app-input[disabled]),
+.app-input-div:has(.app-input[readonly]) {
+    background-color: $input-disabled-background-color;
+    color: $input-disabled-text-color;
+}
+
+.app-input::placeholder {
+    color: $input-placeholder-color;
+}
+
+.app-input::-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: $input-placeholder-color;
+}
+
+.app-input::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: $input-placeholder-color;
+}
+
+.app-input {
+    color: $input-text-color;
+    font-size: $input-font-size;
+    /* Set input to fit parent div*/
+    background-color: transparent;
+    border: none;
+    height: $input-height;
+    width: 100%;
+    padding-left: 10px;
+}
+
+.app-input.app-input-no-icon {
+    padding-right: 10px;
+}
+
+.app-input-valid:not(.disabled):not(:has(.app-input[disabled])):not(:has(.app-input[readonly])) {
+    border: $input-focus-valid-border;
+    box-shadow: $input-focus-valid-box-shadow;
+}
+
+.app-input-invalid:not(.disabled):not(:has(.app-input[disabled])):not(:has(.app-input[readonly])) {
+    border: $input-focus-invalid-border !important;
+    box-shadow: $input-focus-invalid-box-shadow !important;
+}
+
+.app-icon {
+    font-size: $icon-size;
+    padding: 10px;
+    text-align: center;
+}
+
+.app-icon.fa-times-circle {
+    color: map-get($map: colors.$theme-error, $key: 500);
+}
+
+.app-icon.fa-check-circle {
+    color: map-get($map: colors.$theme-primary, $key: 500);
+}
+
+/*Add default height for textarea*/
+textarea.app-input {
+    padding: 4px;
+    height: auto;
+}
+
+/*Disable browser and bootstrap default behavior*/
+input:focus.app-input,
+input:focus-visible.app-input,
+textarea:focus.app-input,
+textarea:focus-visible.app-input {
+    border: none;
+    outline: none;
+}
+
+textarea {
+    resize: none;
+}
+
+label {
+    margin-bottom: 0.3rem;
+}
+
+.app-input-div > .input-group-append,
+.app-input-div > .input-group-prepend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-input-div > .input-group-append {
+    order: 10;
+
+    button,
+    .input-group-text {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: none;
+        border-left: 1px solid #e2eaf1;
+        line-height: 1;
+        height: 30px;
+    }
+
+    button:last-child,
+    .input-group-text:last-child {
+        border-radius: 0;
+        border-top-right-radius: $input-border-radius;
+        border-bottom-right-radius: $input-border-radius;
+    }
+
+    button:not(:last-child),
+    .input-group-text:not(:last-child) {
+        border-radius: 0;
+    }
+}
+
+.app-input-div > .input-group-prepend {
+    order: -1;
+    button,
+    .input-group-text {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: none;
+        border-right: 1px solid #e2eaf1;
+        line-height: 1;
+    }
+
+    button:first-child,
+    .input-group-text:first-child {
+        border-radius: 0;
+        border-top-left-radius: $input-border-radius;
+        border-bottom-left-radius: $input-border-radius;
+    }
+
+    button:not(:first-child),
+    .input-group-text:not(:first-child) {
+        border-radius: 0;
+    }
+}

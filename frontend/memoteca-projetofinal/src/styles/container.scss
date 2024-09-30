@@ -1,0 +1,10 @@
+$default-radius: 4px;
+
+app-comp-container + app-comp-container {
+    margin-top: 1rem;
+}
+
+app-comp-container .vo-container-collapse.vo-container-body-hidden app-comp-container-header .card-header {
+    border-bottom-left-radius: $default-radius;
+    border-bottom-right-radius: $default-radius;
+}

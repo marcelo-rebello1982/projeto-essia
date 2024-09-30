@@ -1,0 +1,26 @@
+@use "./colors.scss";
+
+$comp-accordion-border: map-get(colors.$gray-scale, 200);
+
+app-comp-accordion app-comp-accordion-group .comp-accordion-group-header-container {
+    display: block;
+    border-color: $comp-accordion-border;
+    border-style: solid;
+    border-width: 1px 0;
+}
+
+app-comp-accordion app-comp-accordion-group.comp-acc-group-first .comp-accordion-group-header-container {
+    border-top: 0;
+}
+
+app-comp-accordion app-comp-accordion-group.comp-acc-group-last .comp-accordion-group-header-container:not(.comp-accordion-group-show) {
+    border-bottom: 0;
+}
+
+app-comp-accordion app-comp-accordion-group:not(.comp-acc-group-first) .comp-accordion-group-header-container {
+    margin-top: -1px;
+}
+
+app-comp-accordion app-comp-accordion-group:not(.comp-acc-group-last) .comp-accordion-group-header-container {
+    margin-bottom: -1px;
+}

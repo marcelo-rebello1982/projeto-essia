@@ -1,0 +1,482 @@
+@use "./colors.scss";
+@use "./fonts.scss";
+
+$app-weight: 500;
+$app-transition: color 0.15s ease-in-out;
+$app-border-radius: 4px;
+$app-line-heigth: 12px;
+$app-border-size: 1px solid;
+
+$primary-color: map-get(
+    $map: colors.$theme-primary,
+    $key: 500,
+);
+$primary-hover: map-get(
+    $map: colors.$theme-primary,
+    $key: 600,
+);
+$primary-active: map-get(
+    $map: colors.$theme-primary,
+    $key: 800,
+);
+$primary-text-color: white;
+$primary-active-text: white;
+$primary-border: $app-border-size $primary-color;
+
+$disabled-color: map-get(
+    $map: colors.$gray-scale,
+    $key: 200,
+);
+$disabled-text-color: map-get(
+    $map: colors.$gray-scale,
+    $key: 500,
+);
+$disabled-border: $app-border-size
+    map-get(
+        $map: colors.$gray-scale,
+        $key: 300,
+    );
+
+$default-color: white;
+$default-hover: map-get(
+    $map: colors.$gray-scale,
+    $key: 50,
+);
+$default-text-color: map-get(
+    $map: colors.$gray-scale,
+    $key: 700,
+);
+$default-active: map-get(
+    $map: colors.$gray-scale,
+    $key: 100,
+);
+$default-active-text: map-get(
+    $map: colors.$gray-scale,
+    $key: 600,
+);
+$default-border: $app-border-size
+    map-get(
+        $map: colors.$gray-scale,
+        $key: 300,
+    );
+
+$secondary-color: map-get(
+    $map: colors.$theme-primary,
+    $key: 50,
+);
+$secondary-text-color: map-get(
+    $map: colors.$theme-primary,
+    $key: 500,
+);
+$secondary-hover: map-get(
+    $map: colors.$theme-primary,
+    $key: 100,
+);
+$secondary-active: map-get(
+    $map: colors.$theme-primary,
+    $key: 200,
+);
+$secondary-active-text: map-get(
+    $map: colors.$theme-primary,
+    $key: 600,
+);
+$secondary-border: $app-border-size $secondary-color;
+
+$success-color: map-get(
+    $map: colors.$theme-success,
+    $key: 100,
+);
+$success-text-color: map-get(
+    $map: colors.$theme-success,
+    $key: 500,
+);
+$success-hover: map-get(
+    $map: colors.$theme-success,
+    $key: 200,
+);
+$success-active: map-get(
+    $map: colors.$theme-success,
+    $key: 200,
+);
+$success-active-text: map-get(
+    $map: colors.$theme-success,
+    $key: 700,
+);
+$success-border: $app-border-size $success-color;
+
+$info-color: map-get(
+    $map: colors.$theme-info,
+    $key: 100,
+);
+$info-text-color: map-get(
+    $map: colors.$theme-info,
+    $key: 500,
+);
+$info-hover: map-get(
+    $map: colors.$theme-info,
+    $key: 200,
+);
+$info-active: map-get(
+    $map: colors.$theme-info,
+    $key: 200,
+);
+$info-active-text: map-get(
+    $map: colors.$theme-info,
+    $key: 700,
+);
+$info-border: $app-border-size $info-color;
+
+$danger-color: map-get(
+    $map: colors.$theme-error,
+    $key: 100,
+);
+$danger-text-color: map-get(
+    $map: colors.$theme-error,
+    $key: 500,
+);
+$danger-hover: map-get(
+    $map: colors.$theme-error,
+    $key: 200,
+);
+$danger-active: map-get(
+    $map: colors.$theme-error,
+    $key: 200,
+);
+$danger-active-text: map-get(
+    $map: colors.$theme-error,
+    $key: 300,
+);
+$danger-border: $app-border-size $danger-color;
+
+$warning-color: map-get(
+    $map: colors.$theme-warning,
+    $key: 100,
+);
+$warning-text-color: map-get(
+    $map: colors.$theme-warning,
+    $key: 700,
+);
+$warning-hover: map-get(
+    $map: colors.$theme-warning,
+    $key: 200,
+);
+$warning-active: map-get(
+    $map: colors.$theme-warning,
+    $key: 200,
+);
+$warning-active-text: map-get(
+    $map: colors.$theme-warning,
+    $key: 500,
+);
+$warning-border: $app-border-size $warning-color;
+
+$size-sm-padding-x: 12px;
+$size-sm-padding-y: 9px;
+$size-sm-font-size: fonts.$text-xs;
+$size-sm-line-height: 10px;
+$size-sm-height: 28px;
+
+$size-md-padding-x: 24px;
+$size-md-padding-y: 9px;
+$size-md-font-size: fonts.$text-xs;
+$size-md-line-height: 12px;
+$size-md-height: 32px;
+
+$size-lg-padding-x: 30px;
+$size-lg-padding-y: 9px;
+$size-lg-font-size: fonts.$text-sm;
+$size-lg-line-height: 20px;
+$size-lg-height: 40px;
+
+@mixin button-type($text-color, $bg-color, $bg-hover, $bg-active, $text-active, $border) {
+    background-color: $bg-color;
+    color: $text-color;
+    border: $border;
+
+    &:hover {
+        background-color: $bg-hover;
+        color: $text-color;
+        text-decoration: none;
+    }
+
+    &:active {
+        background-color: $bg-color;
+        color: $text-color;
+        outline: none;
+    }
+
+    &:focus-visible,
+    &:focus {
+        outline: none;
+    }
+}
+
+@mixin button-size($padding-y, $padding-x, $line-height, $font-size) {
+    padding: $padding-y $padding-x;
+    line-height: $line-height;
+    font-size: $font-size;
+}
+
+.app-btn {
+    display: inline-block;
+    font-weight: $app-weight;
+    text-align: center;
+    white-space: null;
+    vertical-align: middle;
+    user-select: none;
+    transition: $app-transition;
+    padding: $size-sm-padding-y $size-sm-padding-x;
+    border-radius: $app-border-radius;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    line-height: $app-line-heigth;
+    white-space: nowrap;
+}
+
+.app-btn:focus {
+    box-shadow: 0px 0px 0px 4px map-get($map: colors.$theme-primary, $key: 200);
+    z-index: 100 !important;
+    border: 1px solid map-get($map: colors.$theme-primary, $key: 500);
+}
+
+.app-btn-primary {
+    @include button-type(
+        $primary-text-color,
+        $primary-color,
+        $primary-hover,
+        $primary-active,
+        $primary-active-text,
+        $primary-border
+    );
+}
+
+.app-btn-default {
+    @include button-type(
+        $default-text-color,
+        $default-color,
+        $default-hover,
+        $default-active,
+        $default-active-text,
+        $default-border
+    );
+}
+
+.app-btn-secondary {
+    @include button-type(
+        $secondary-text-color,
+        $secondary-color,
+        $secondary-hover,
+        $secondary-active,
+        $secondary-active-text,
+        $secondary-border
+    );
+}
+
+.app-btn-success {
+    @include button-type(
+        $success-text-color,
+        $success-color,
+        $success-hover,
+        $success-active,
+        $success-active-text,
+        $success-border
+    );
+}
+
+.app-btn-danger {
+    @include button-type(
+        $danger-text-color,
+        $danger-color,
+        $danger-hover,
+        $danger-active,
+        $danger-active-text,
+        $danger-border
+    );
+}
+
+.app-btn-info {
+    @include button-type($info-text-color, $info-color, $info-hover, $info-active, $info-active-text, $info-border);
+}
+
+.app-btn-warning {
+    @include button-type(
+        $warning-text-color,
+        $warning-color,
+        $warning-hover,
+        $warning-active,
+        $warning-active-text,
+        $warning-border
+    );
+}
+
+.app-btn[disabled] {
+    background-color: $disabled-color;
+    color: $disabled-text-color;
+    border: $disabled-border;
+
+    .active {
+        background-color: transparent !important;
+    }
+}
+
+.app-btn-sm {
+    @include button-size(
+        $size-sm-padding-y,
+        $size-sm-padding-x,
+        $size-sm-line-height,
+        $size-sm-font-size,
+    );
+}
+
+.app-btn-md {
+    @include button-size(
+        $size-md-padding-y,
+        $size-md-padding-x,
+        $size-md-line-height,
+        $size-md-font-size,
+    );
+}
+
+.app-btn-lg {
+    @include button-size(
+        $size-lg-padding-y,
+        $size-lg-padding-x,
+        $size-lg-line-height,
+        $size-lg-font-size,
+    );
+}
+
+.app-btn-block {
+    display: block;
+    width: 100%;
+}
+
+div.app-btn-block + .app-btn-block {
+    margin-top: 0.5rem !important;
+}
+
+.app-btn-round {
+    border-radius: 100%;
+    padding: 0;
+}
+
+.app-btn-group {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+
+    > .app-btn {
+        position: relative;
+        flex: 1 1 auto;
+
+        // Bring the hover, focused, and "active" buttons to the front to overlay
+        // the borders properly
+        &:focus,
+        &:active,
+        &.active,
+        &:hover {
+            z-index: 1;
+        }
+    }
+
+    > .app-btn:not(:first-child),
+    > .app-btn-group:not(:first-child) {
+        margin-left: -1px !important;
+    }
+
+    // Reset rounded corners
+    > .app-btn:not(:last-child):not(.dropdown-toggle),
+    > .app-btn-group:not(:last-child) > .app-btn {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    > .app-btn:not(:first-child),
+    > .app-btn-group:not(:first-child) > .app-btn {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    > .app-btn-secondary {
+        border: $default-border;
+    }
+}
+
+.app-btn-group-vertical {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    display: flex;
+
+    > .app-btn,
+    > .app-btn-group {
+        width: 100%;
+    }
+
+    > .app-btn {
+        &:focus,
+        &:active,
+        &.active,
+        &:hover {
+            z-index: 1;
+        }
+    }
+
+    > .app-btn:not(:first-child),
+    > .app-btn-group:not(:first-child) {
+        margin-top: -1px;
+    }
+
+    // Reset rounded corners
+    > .app-btn:not(:last-child):not(.dropdown-toggle),
+    > .app-btn-group:not(:last-child) > .app-btn {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    > .app-btn:not(:first-child),
+    > .app-btn-group:not(:first-child) > .app-btn {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+    }
+
+    br {
+        padding: 10px;
+        display: inline-block;
+        content: "";
+    }
+}
+
+.app-btn-group-toggle {
+    > .app-btn,
+    > .app-btn-group > .app-btn {
+        margin-bottom: 0; // Override default `<label>` value
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            position: absolute;
+            clip: rect(0, 0, 0, 0);
+            pointer-events: none;
+        }
+    }
+}
+
+/* button and badge */
+.app-btn:has(.badge) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-btn-sm:has(.badge) {
+    height: $size-sm-height;
+}
+
+.app-btn-md:has(.badge) {
+    height: $size-md-height;
+}
+
+.app-btn-lg:has(.badge) {
+    height: $size-lg-height;
+}

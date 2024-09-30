@@ -1,0 +1,124 @@
+@use "./colors.scss";
+@use "./fonts.scss";
+/* badge */
+
+/* info */
+$comp-badge-bg-info: map-get(colors.$theme-info, 100);
+$comp-badge-border-info: map-get(colors.$theme-info, 200);
+$comp-badge-text-info: map-get(colors.$theme-info, 700);
+$comp-badge-icon-info: map-get(colors.$theme-info, 700);
+/* info */
+
+/*success */
+$comp-badge-bg-success: map-get(colors.$theme-success, 100);
+$comp-badge-border-success: map-get(colors.$theme-success, 200);
+$comp-badge-text-success: map-get(colors.$theme-success, 700);
+$comp-badge-icon-success: map-get(colors.$theme-success, 700);
+/*success */
+
+/*warning */
+$comp-badge-bg-warning: map-get(colors.$theme-warning, 100);
+$comp-badge-border-warning: map-get(colors.$theme-warning, 200);
+$comp-badge-text-warning: map-get(colors.$theme-warning, 700);
+$comp-badge-icon-warning: map-get(colors.$theme-warning, 700);
+/*success */
+
+/*danger */
+$comp-badge-bg-danger: map-get(colors.$theme-error, 100);
+$comp-badge-border-danger: map-get(colors.$theme-error, 200);
+$comp-badge-text-danger: map-get(colors.$theme-error, 700);
+$comp-badge-icon-danger: map-get(colors.$theme-error, 700);
+/*danger */
+
+/*primary */
+$comp-badge-bg-primary: map-get(colors.$theme-primary, 50);
+$comp-badge-border-primary: map-get(colors.$theme-primary, 200);
+$comp-badge-text-primary: map-get(colors.$theme-primary, 600);
+$comp-badge-icon-primary: map-get(colors.$theme-primary, 600);
+/*primary */
+
+/*secondary */
+$comp-badge-bg-secondary: map-get(colors.$gray-scale, 200);
+$comp-badge-border-secondary: map-get(colors.$gray-scale, 300);
+$comp-badge-text-secondary: map-get(colors.$gray-scale, 700);
+$comp-badge-icon-secondary: map-get(colors.$gray-scale, 700);
+/*secondary */
+
+@mixin addBadge($badge-bg-color, $badge-text-color, $border-color, $icon-color) {
+    background-color: $badge-bg-color;
+    color: $badge-text-color;
+    border: 1px solid $border-color;
+
+    .comp-badge-encap span {
+        background-color: $icon-color;
+        padding: 4px;
+        border-radius: 3px;
+    }
+}
+
+.cursor-default {
+    cursor: default;
+}
+
+.badge-info {
+    @include addBadge($comp-badge-bg-info, $comp-badge-text-info, $comp-badge-border-info, $comp-badge-icon-info);
+}
+
+.badge-warning {
+    @include addBadge($comp-badge-bg-warning, $comp-badge-text-warning, $comp-badge-border-warning, $comp-badge-icon-warning);
+}
+
+.badge-success {
+    @include addBadge($comp-badge-bg-success, $comp-badge-text-success, $comp-badge-border-success, $comp-badge-icon-success);
+}
+
+.badge-danger {
+    @include addBadge($comp-badge-bg-danger, $comp-badge-text-danger, $comp-badge-border-danger, $comp-badge-icon-danger);
+}
+
+.badge-primary {
+    @include addBadge($comp-badge-bg-primary, $comp-badge-text-primary, $comp-badge-border-primary, $comp-badge-icon-primary);
+}
+
+.badge-secondary {
+    @include addBadge(
+        $comp-badge-bg-secondary,
+        $comp-badge-text-secondary,
+        $comp-badge-border-secondary,
+        $comp-badge-icon-secondary
+    );
+}
+
+.comp-badge {
+    display: inline-block;
+    border-radius: 54px;
+    padding: 2px 6px;
+
+    .comp-badge-encap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .badge {
+        font-size: fonts.$text-xs;
+        padding: 0;
+        font-weight: 500;
+        position: unset;
+    }
+}
+
+.badge-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        opacity: 0.7;
+    }
+
+    i {
+        font-size: 10px;
+    }
+}
